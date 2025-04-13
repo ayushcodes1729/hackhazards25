@@ -1,35 +1,21 @@
-const Groq = require("groq-sdk");
+const express = require("express");
+const app = express();
 require("dotenv").config();
+const port = process.env.PORT;
+const connectDb = require("./config/database");
 
-const groq = new Groq({apikey: process.env.GROQ_API_KEY});
-async function main() {
-    const chatCompletion = await groq.chat.completions.create({
-        messages: [
-            {
-                role: "user",
-                content: [
-                    {
-                        type: "text",
-                        text: "What's in this image?",
-                    },
-                    {
-                        type: "image_url",
-                        image_url: {
-                            url: "https://res.cloudinary.com/dg57in75j/image/upload/v1732110436/bartlomiej-jacak-iceEanqk6BQ-unsplash_pn3rkf.jpg",
-                        },
-                    },
-                ],
-            },
-        ],
-        model: "meta-llama/llama-4-scout-17b-16e-instruct",
-        temperature: 1,
-        max_completion_tokens: 1024,
-        top_p: 1,
-        stream: false,
-        stop: null,
+app.get("/", (req, res) => {
+    console.log("Server started");
+    res.send("Server Running");
+});
+
+connectDb().then(() => {
+    console.log("Database connection successfull");
+    app.listen(port, () => {
+        console.log(`Server started listening to ${port}...`);
     });
-
-    console.log(chatCompletion.choices[0].message.content);
-}
-
-main();
+}).catch(
+    (err)=>{
+        console.error("Error while connecting the database")
+    }
+)
