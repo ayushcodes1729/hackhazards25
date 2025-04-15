@@ -3,6 +3,14 @@ const app = express();
 require("dotenv").config();
 const port = process.env.PORT;
 const connectDb = require("./config/database");
+const cookieParser = require("cookie-parser");
+
+app.use(express.json());
+app.use(cookieParser());
+
+const authRouter = require("./routes/auth");
+
+app.use("/", authRouter);
 
 app.get("/", (req, res) => {
     console.log("Server started");
