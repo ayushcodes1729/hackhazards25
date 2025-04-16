@@ -1,43 +1,106 @@
-import React from "react";
-import image from "../assets/image.png";
+import { useState, useEffect } from "react";
+import img from "../assets/image (1).png";
 
-const About = () => {
+export default function YouSee() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowWidth <= 768;
+
+  const features = [
+    { title: "AI-Powered Object Recognition" },
+    { title: "Real-Time Audio Descriptions" },
+    { title: "No App Needed Works on Any Phone" },
+    { title: "Voice-Friendly Interface" },
+  ];
+
   return (
-    <section className="h-screen w-screen bg-[#191919] text-[#FFFFFF] flex flex-col items-center justify-center px-4">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6">What is YouSee?</h2>
+    <div className="bg-black text-white min-h-screen p-4">
+      <div className="max-w-5xl mx-auto">
+        <h1 className="text-2xl md:text-3xl font-bold text-center my-6">
+          What is YouSee?
+        </h1>
 
-      <p className="text-justify text-sm md:text-base max-w-[80%] md:max-w-[60%] mb-6">
-        YouSee is a vision-to-audio assistive tool that converts your camera's
-        live feed into spoken words. Whether it's navigating busy streets,
-        identifying people, or reading signs.
-      </p>
-      <p className="text-justify text-sm md:text-base max-w-[80%] md:max-w-[60%] mb-6">
-        YouSee gives users the freedom to move, understand, and explore
-        independently.
-      </p>
-
-      <img
-        src={image}
-        alt="YouSee in action"
-        className="rounded-2xl max-w-[90%] sm:max-w-[60%] md:max-w-[50%] h-auto mb-6"
-      />
-
-      <div className="grid grid-cols-2 text-[#252525] gap-2 w-full max-w-[88%] md:max-w-[60%]">
-        <div className="border border-[#00D4FF] bg-[#FFFFFF] rounded-lg p-4 text-justify">
-          AI-Powered Object Recognition
-        </div>
-        <div className="border border-[#00D4FF] bg-[#FFFFFF] rounded-lg p-2 text-justify">
-          Real-Time Audio Descriptions
-        </div>
-        <div className="border border-[#00D4FF] bg-[#FFFFFF] rounded-lg p-2 text-justify">
-          No App Needed Works on Any Phone
-        </div>
-        <div className="border border-[#00D4FF] bg-[#FFFFFF] rounded-lg p-2 text-justify">
-          Voice-Friendly Interface
-        </div>
+        {!isMobile ? (
+  <div className="flex gap-8 items-center">
+  
+    <div className="w-1/2">
+      <div className="mb-6">
+        <p className="leading-relaxed">
+          YouSee is a vision-to-audio assistive tool that converts your
+          camera's live feed into spoken words. Whether it's navigating
+          busy streets, identifying people, or reading signs.
+        </p>
+        <p className="mt-4 leading-relaxed">
+          YouSee gives users the freedom to move, understand, and explore
+          independently.
+        </p>
       </div>
-    </section>
-  );
-};
 
-export default About;
+      <div className="grid grid-cols-2 gap-4">
+        {features.map((feature, index) => (
+          <div
+            key={index}
+            className="bg-white text-black rounded-lg p-4 h-24 flex items-center justify-center text-center"
+          >
+            <p>{feature.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+   
+    <div className="w-1/2">
+      <img
+        src={img}
+        alt="Person using YouSee app on smartphone"
+        className="rounded-lg object-cover w-full h-auto"
+      />
+    </div>
+  </div>
+) : (
+          <div>
+            <div className="mb-6">
+              <p className="leading-relaxed">
+                YouSee is a vision-to-audio assistive tool that converts your
+                camera's live feed into spoken words. Whether it's navigating
+                busy streets, identifying people, or reading signs.
+              </p>
+              <p className="mt-4 leading-relaxed">
+                YouSee gives users the freedom to move, understand, and explore
+                independently.
+              </p>
+            </div>
+
+            <div className="w-full mb-4">
+              <img
+                src={img}
+                alt="Person using YouSee app on smartphone"
+                className="w-full rounded-lg"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-white text-black rounded-lg p-3 h-20 flex items-center justify-center text-center"
+                >
+                  <p className="text-sm">{feature.title}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
