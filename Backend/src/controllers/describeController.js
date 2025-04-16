@@ -15,7 +15,7 @@ async function describeImage(req, res) {
         const response = await axios.post(
             'https://api.groq.com/v1/chat/completions', 
             {
-                model: 'llava',
+                model: 'meta-llama/llama-4-scout-17b-16e-instruct',
                 messages: [
                     {
                         role: 'user',
@@ -38,7 +38,7 @@ async function describeImage(req, res) {
         res.status(200).json({ description });
 
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
         res.status(500).json({ message: 'Internal server error' });
     }
 }

@@ -9,7 +9,7 @@ authRouter.post("/signup", async (req, res) => {
     const { name, email, password } = req.body;
     try {
         validateSignupData(req);
-        const userExists = await User.findOne({ email });
+        const userExists = await User.findOne({ email : email });
         if (userExists) {
             throw new Error("User already exists");
         }
@@ -44,7 +44,7 @@ authRouter.post("/login", async (req, res) => {
         if (!registeredUser) {
             res.status(404).send("User not found");
         }
-        if (validator.isEmail(email)) {
+        if (!validate.isEmail(email)) {
             throw new Error("Please enter a valid email");
         }
 
@@ -53,7 +53,7 @@ authRouter.post("/login", async (req, res) => {
         if (!authenticatePass) {
             res.status(401).send("Invalid Credentials");
         } else {
-            const token = await user.getJWT();
+            const token = await registeredUser.getJWT();
             res.cookie("token", token, {
                 expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             });
@@ -67,12 +67,14 @@ authRouter.post("/login", async (req, res) => {
     }
 });
 
-authRouter.post("/logut", async (req, res)=>{
+authRouter.post("/logout", async (req, res)=>{
     try {
         res.cookie("token", null, {
             expires: new Date(Date.now())
         })
     } catch (error) {
-        
+        res.status(400).send("Can't log out");
     }
 })
+
+module.exports = authRouter

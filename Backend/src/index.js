@@ -9,8 +9,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 const authRouter = require("./routes/auth");
+const router = require("./routes/describe");
 
 app.use("/", authRouter);
+app.use("/", router);
 
 app.get("/", (req, res) => {
     console.log("Server started");
@@ -24,6 +26,6 @@ connectDb().then(() => {
     });
 }).catch(
     (err)=>{
-        console.error("Error while connecting the database")
+        console.error("Error while connecting the database:", err)
     }
 )
