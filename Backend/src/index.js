@@ -4,9 +4,20 @@ require("dotenv").config();
 const port = process.env.PORT;
 const connectDb = require("./config/database");
 const cookieParser = require("cookie-parser");
+const bodyParser = require('body-parser');
+const cors = require("cors");
+
+app.use(
+    cors({
+        origin: "http://localhost:5173",
+        methods: "GET,POST,PUT,DELETE,PATCH",
+        credentials: true,
+    })
+);
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.json({ limit: '10mb' }));
 
 const authRouter = require("./routes/auth");
 const router = require("./routes/describe");
@@ -25,7 +36,7 @@ connectDb().then(() => {
         console.log(`Server started listening to ${port}...`);
     });
 }).catch(
-    (err)=>{
+    (err) => {
         console.error("Error while connecting the database:", err)
     }
 )
