@@ -1,7 +1,14 @@
- import React from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import image from "../assets/image.png";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handle = () => {
+    navigate("/webcam");
+  };
+
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-lg mb-8">
@@ -42,10 +49,13 @@ const Hero = () => {
       </div>
 
       <div className="flex flex-col items-center">
-        <button className="bg-cyan-400 text-black font-medium px-8 py-2 rounded-md mb-4">
+        <button
+          className="bg-cyan-400 text-black font-medium px-8 py-2 rounded-md mb-4"
+          onClick={handle}
+        >
           Start Describing
         </button>
-        <a href="#" className="text-cyan-400 text-sm">
+        <a href="#work" className="text-cyan-400 text-sm">
           How it Works
         </a>
       </div>
@@ -53,4 +63,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Hero;
