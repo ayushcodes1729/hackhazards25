@@ -26,7 +26,7 @@ const Lastpg = () => {
 
   return (
     <>
-      <section className="bg-black text-white flex flex-col justify-center items-center p-4 ">
+      <section  className="bg-black text-white flex flex-col justify-center items-center p-4 ">
         <h1 className="text-3xl font-bold text-wrap">Made For Those</h1>
         <h1 className="text-3xl font-bold text-wrap">Who See Differently</h1>
         <h2 className="mt-8 text-wrap text-lg max-w-2xl">
