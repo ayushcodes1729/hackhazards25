@@ -1,18 +1,37 @@
+// pages/Home.jsx
 import React from "react";
-import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import WorkPg from "../components/WorkPg";
+import Lastpg from "../components/Lastpg";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar"; // Import the Navbar component
 
-const MainLayout = () => {
+
+const Mainlayout = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-[#191919]">
-      <Navbar />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
-      <Footer />
+    <div>
+       <Navbar /> 
+      <Hero />
+
+      {/* Add ids to enable anchor linking */}
+      <div id="about">
+        <About />
+      </div>
+
+      <div id="work">
+        <WorkPg />
+      </div>
+
+      <div id="audience">
+        <Lastpg />
+      </div>
+
+      <div id="footer">
+        <Footer />
+      </div>
     </div>
   );
 };
 
-export default MainLayout;
+export default Mainlayout;
