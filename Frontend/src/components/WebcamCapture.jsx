@@ -8,7 +8,7 @@ export default function WebcamCapture() {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then((stream) => {
