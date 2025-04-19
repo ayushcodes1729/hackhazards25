@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const routesWithNavbar = ["/", "/about", "/faq", "/more", "/webcam"]; 
+  const routesWithNavbar = ["/"]; // Only render navbar on the home page
   if (!routesWithNavbar.includes(location.pathname)) {
     return null; 
   }
@@ -24,29 +24,38 @@ const Navbar = () => {
 
       <ul className="hidden md:flex space-x-8 text-[#B2B2B2]">
         <li>
-          <NavLink to="/" className="text-[#B2B2B2] hover:text-white cursor-pointer">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/about" className="text-[#B2B2B2] hover:text-white cursor-pointer">
+          <a href="#about" className="text-[#B2B2B2] hover:text-white cursor-pointer">
             About us
-          </NavLink>
+          </a>
         </li>
         <li>
-          <NavLink to="/faq" className="text-[#B2B2B2] hover:text-white cursor-pointer">
+          <a href="#work" className="text-[#B2B2B2] hover:text-white cursor-pointer">
             FAQs
-          </NavLink>
+          </a>
         </li>
         <li>
-          <NavLink to="/more" className="text-[#B2B2B2] hover:text-white cursor-pointer">
-            How it works
-          </NavLink>
+          <a href="#audience" className="text-[#B2B2B2] hover:text-white cursor-pointer">
+            More
+          </a>
+        </li>
+        {/* Adding links to Hero and Contact sections */}
+        <li>
+          <a href="#hero" className="text-[#B2B2B2] hover:text-white cursor-pointer">
+            Hero Section
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="text-[#B2B2B2] hover:text-white cursor-pointer">
+            Contact Us
+          </a>
         </li>
       </ul>
 
-      <NavLink to="/signin" className="hidden md:block bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg">
-        Sign in
+      <NavLink
+        to="/signup" // Change this line to link to the signup page
+        className="hidden md:block bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg"
+      >
+        Sign up
       </NavLink>
 
       <div className="md:hidden">
@@ -75,19 +84,20 @@ const Navbar = () => {
         <div className="absolute top-[73px] right-6 bg-white text-black shadow-lg rounded-lg w-48 z-50">
           <ul className="flex flex-col space-y-2 p-4">
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <NavLink to="/signin" className="block">Login/Signup</NavLink>
+              <a href="#about" className="block">About us</a>
             </li>
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <NavLink to="/" className="block">Home</NavLink>
+              <a href="#work" className="block">FAQs</a>
             </li>
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <NavLink to="/about" className="block">About us</NavLink>
+              <a href="#audience" className="block">More</a>
+            </li>
+            {/* Mobile links for Hero and Contact */}
+            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
+              <a href="#hero" className="block">Hero Section</a>
             </li>
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <NavLink to="/faq" className="block">FAQs</NavLink>
-            </li>
-            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <NavLink to="/more" className="block">How it works</NavLink>
+              <a href="#contact" className="block">Contact Us</a>
             </li>
           </ul>
         </div>

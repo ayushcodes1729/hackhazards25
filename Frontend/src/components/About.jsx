@@ -23,7 +23,7 @@ export default function YouSee() {
   ];
 
   return (
-    <div className="bg-black text-white min-h-screen p-4">
+    <div className="bg-black text-white min-h-screen p-4" id="about">
       <div className="max-w-5xl mx-auto">
         <h1 className="text-2xl md:text-3xl font-bold text-center my-6">
           What is YouSee?
