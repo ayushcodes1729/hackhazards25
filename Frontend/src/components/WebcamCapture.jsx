@@ -8,7 +8,35 @@ export default function WebcamCapture() {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
-useEffect(() => {
+  useEffect(() => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      console.warn("Speech Recognition not supported");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[event.results.length - 1][0].transcript
+        .trim()
+        .toLowerCase();
+      if (transcript.includes("capture")) {
+        captureImage();
+      }
+    };
+
+    recognition.onerror = (e) =>
+      console.error("Speech recognition error:", e);
+    recognition.start();
+
+    return () => recognition.stop();
+  }, []);
+
+  useEffect(() => {
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then((stream) => {
@@ -40,7 +68,11 @@ useEffect(() => {
       });
 
       const data = await res.json();
-      setDescription(data.description || "No description received");
+      const desc = data.description || "No description received";
+      setDescription(desc);
+
+      const utterance = new SpeechSynthesisUtterance(desc);
+      speechSynthesis.speak(utterance);
     } catch (err) {
       console.error("Error sending image to backend:", err);
       setDescription("Error getting description");
@@ -50,38 +82,54 @@ useEffect(() => {
   };
 
   return (
-    <div className="flex flex-col bg-black items-center justify-center min-h-52 space-y-6 relative">
-      <img
-        src={img5}
-        alt="Image 1"
-        className="absolute bottom-8 z-10 w-12 h-12 sm:w-20 sm:h-20 sm:bottom-6 bg-teal-600 rounded-full right-1/2 cursor-pointer"
-        onClick={captureImage}
-      />
-      <img
-        src={img6}
-        alt="Image 2"
-        className="absolute bottom-10 ml-4 z-10 w-6 h-6 sm:w-10 sm:h-10 sm:bottom-8 bg-white rounded-full left-1/2"
-      />
-
-      <div className="relative border-2 border-cyan-400 rounded-lg w-[70%] h-auto mt-10">
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 bg-gradient-to-br from-black to-gray-900 text-white relative space-y-8">
+      {/* Video Container */}
+      <div className="relative border-2 border-cyan-400 rounded-3xl w-full max-w-xl overflow-hidden backdrop-blur-md bg-white/10 shadow-lg">
         <video
           ref={videoRef}
           autoPlay
-          className="rounded-lg bg-black w-full h-90"
+          className="rounded-3xl w-full aspect-video object-cover"
         />
-        <p className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-400 text-sm">
-          Click object's photo
+        <p className="absolute inset-0 flex items-center justify-center text-cyan-200 font-medium text-sm pointer-events-none">
+          Say or click "Capture" to take photo
         </p>
       </div>
 
-      <p className="text-gray-400 text-lg mt-2">
-        Place the object in front of the camera
+      {/* Icons */}
+      <div className="flex items-center gap-6">
+        <img
+          src={img5}
+          alt="Capture"
+          className="w-16 h-16 sm:w-20 sm:h-20 bg-teal-600 hover:scale-110 transition-transform rounded-full p-2 cursor-pointer shadow-xl"
+          onClick={captureImage}
+        />
+        <img
+          src={img6}
+          alt="Mic Icon"
+          className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-md"
+        />
+      </div>
+
+      {/* Instructions */}
+      <p className="text-cyan-200 font-light text-center">
+        Listening for "<span className="font-semibold text-cyan-400">capture</span>"...
+      </p>
+      <p className="text-gray-300 text-sm text-center">
+        Make sure the object is in front of your camera
       </p>
 
+      {/* Description Output */}
       {description && (
-        <p className="text-white text-center mt-4 max-w-lg">{description}</p>
+        <div className="mt-4 max-w-lg px-4 py-3 rounded-xl bg-cyan-900/30 text-white text-center border border-cyan-600 shadow-md backdrop-blur-md">
+          {description}
+        </div>
       )}
 
+      {loading && (
+        <p className="text-sm text-cyan-300 animate-pulse">Analyzing image...</p>
+      )}
+
+      {/* Hidden canvas */}
       <canvas ref={canvasRef} style={{ display: "none" }} />
     </div>
   );
