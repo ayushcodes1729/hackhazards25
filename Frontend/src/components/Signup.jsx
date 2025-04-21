@@ -1,11 +1,46 @@
+import axios from "axios";
 import React, { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
 const Signup = () => {
   const [isSignup, setIsSignup] = useState(true); // Toggle between Signup and Login forms
-
-  const handleFormSubmit = (e) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate()
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Perform validation and API calls for login/signup
+    try {
+      const res = await axios.post('http://localhost:3001/login', {
+        email,
+        password
+      },{
+        withCredentials: true
+      })
+      console.log(res);
+      navigate("/webcam");
+    } catch (error) {
+      console.log("Error while logging in: ", error.message);
+      setError(error.message);
+    }
+  };
+  const handleSignup = async(e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:3001/signup',{
+        name,
+        email,
+        password
+      },{
+        withCredentials: true
+      });
+      console.log(res);
+      navigate("/webcam")
+    } catch (error) {
+      console.log("Error while signing up: ", error.message);
+      setError(error.message);
+    }
   };
 
   return (
@@ -15,7 +50,23 @@ const Signup = () => {
           {isSignup ? "Sign Up" : "Log In"}
         </h1>
 
-        <form onSubmit={handleFormSubmit} className="space-y-4">
+        <form onSubmit={isSignup ? handleSignup : handleLogin} className="space-y-4">
+          {isSignup &&
+            (<div>
+              <label className="block text-sm" htmlFor="name">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full p-3 mt-2 bg-gray-800 rounded-md text-white"
+                required
+              />
+            </div>)
+          }
           <div>
             <label className="block text-sm" htmlFor="email">
               Email
@@ -24,6 +75,8 @@ const Signup = () => {
               type="email"
               id="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full p-3 mt-2 bg-gray-800 rounded-md text-white"
               required
             />
@@ -37,25 +90,14 @@ const Signup = () => {
               type="password"
               id="password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full p-3 mt-2 bg-gray-800 rounded-md text-white"
               required
             />
           </div>
 
-          {isSignup && (
-            <div>
-              <label className="block text-sm" htmlFor="confirmPassword">
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                className="w-full p-3 mt-2 bg-gray-800 rounded-md text-white"
-                required
-              />
-            </div>
-          )}
+          <div className="text-red-600">{error}</div>
 
           <div className="flex justify-between items-center">
             <button
