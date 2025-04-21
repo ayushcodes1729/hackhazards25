@@ -1,12 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../assets/image.png";
+import { useSelector } from "react-redux";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const user = useSelector((store)=>store.user)
 
   const handle = () => {
-    navigate("/webcam");
+    if(user){
+      navigate("/webcam");
+    }
+    else{
+      navigate("/signup")
+    }
   };
 
   return (

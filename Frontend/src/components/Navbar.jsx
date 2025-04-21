@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useLocation, Link } from "react-router-dom";
+import { IoMdClose} from "react-icons/io";
+import { MdMenu } from "react-icons/md";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = useSelector((store) => store.user)
   const location = useLocation();
   const routesWithNavbar = ["/"]; // Only render navbar on the home page
   if (!routesWithNavbar.includes(location.pathname)) {
-    return null; 
+    return null;
   }
 
   return (
@@ -51,37 +55,32 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <NavLink
-        to="/signup" // Change this line to link to the signup page
-        className="hidden md:block bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg"
-      >
-        Sign up
-      </NavLink>
+      {user ?
+        (<NavLink
+          className="hidden md:block bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg"
+        >
+          Logout
+        </NavLink>)
+        : (<NavLink
+          to="/signup"
+          className="hidden md:block bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg"
+        >
+          Sign up
+        </NavLink>)
+
+      }
 
       <div className="md:hidden">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-white focus:outline-none"
+          className="text-white text-2xl focus:outline-none"
         >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
+          {isMenuOpen ? <IoMdClose/> :<MdMenu/>}
         </button>
       </div>
 
       {isMenuOpen && (
-        <div className="absolute top-[73px] right-6 bg-white text-black shadow-lg rounded-lg w-48 z-50">
+        <div className="absolute block md:hidden top-[73px] right-6 bg-white text-black shadow-lg rounded-lg w-48 z-50">
           <ul className="flex flex-col space-y-2 p-4">
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               <a href="#about" className="block">About us</a>
@@ -98,6 +97,21 @@ const Navbar = () => {
             </li>
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               <a href="#contact" className="block">Contact Us</a>
+            </li>
+            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
+              {user ?
+                (<NavLink
+                  className="bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg"
+                >
+                  Logout
+                </NavLink>)
+                : (<NavLink
+                  to="/signup"
+                  className="bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg"
+                >
+                  Sign up
+                </NavLink>)
+              }
             </li>
           </ul>
         </div>
