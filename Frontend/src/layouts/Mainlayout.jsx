@@ -17,7 +17,7 @@ const Mainlayout = () => {
   const navigate = useNavigate();
   const fetchUser = async()=>{
       try {
-        const res = await axios.get(`${import.meta.env.BASE_URL}+get/user`,{withCredentials: true})
+        const res = await axios.get(`${import.meta.env.BASE_URL}get/user`,{withCredentials: true})
         dispatch(addUser(res.data.user));
       } catch (error) {
         if(error.response?.status== 401){
