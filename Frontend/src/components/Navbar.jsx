@@ -1,16 +1,32 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { NavLink, useLocation, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useLocation, Link, useNavigate } from "react-router-dom";
 import { IoMdClose} from "react-icons/io";
 import { MdMenu } from "react-icons/md";
+import axios from "axios";
+import { removeUser } from "../utils/userSlice";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = useSelector((store) => store.user)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
   const routesWithNavbar = ["/"]; // Only render navbar on the home page
   if (!routesWithNavbar.includes(location.pathname)) {
     return null;
+  }
+
+  const handleLogout = async() =>{
+    try {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}logout`, {}, {
+        withCredentials: true
+      });
+      dispatch(removeUser());
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -58,6 +74,7 @@ const Navbar = () => {
       {user ?
         (<NavLink
           className="hidden md:block bg-gradient-to-r from-[#00FFE6] to-[#00D4FF] text-black font-medium px-6 py-2 rounded-lg"
+          onClick={handleLogout}
         >
           Logout
         </NavLink>)
