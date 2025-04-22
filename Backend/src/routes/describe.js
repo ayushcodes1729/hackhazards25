@@ -25,7 +25,7 @@ router.post("/describe", async (req, res) => {
                 {
                     role: "user",
                     content: [
-                        { type: "text", text: "Describe this image in detail." },
+                        { type: "text", text: "Describe this image in about 50 words." },
                         {
                             type: "image_url",
                             image_url: { url: `data:image/jpeg;base64,${base64Data}` },

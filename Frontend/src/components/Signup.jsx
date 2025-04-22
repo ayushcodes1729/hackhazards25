@@ -22,7 +22,6 @@ const Signup = () => {
       }, {
         withCredentials: true
       })
-      // console.log(res.data.registeredUser);
       dispatch(addUser(res.data.registeredUser))
       navigate("/webcam");
     } catch (error) {
@@ -40,7 +39,6 @@ const Signup = () => {
       }, {
         withCredentials: true
       });
-      console.log(res.data.data);
       dispatch(addUser(res.data.data))
       navigate("/webcam")
     } catch (error) {

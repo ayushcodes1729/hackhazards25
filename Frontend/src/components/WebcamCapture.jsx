@@ -163,11 +163,6 @@ export default function WebcamCapture() {
             className="w-16 h-16 sm:w-20 sm:h-20 bg-teal-600 hover:scale-110 transition-transform rounded-full p-2 cursor-pointer shadow-xl"
             onClick={captureImage}
           />
-          <img
-            src={img6}
-            alt="Mic Icon"
-            className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-md"
-          />
         </div>
 
         {/* Instructions */}
