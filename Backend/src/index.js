@@ -21,9 +21,11 @@ app.use(bodyParser.json({ limit: '10mb' }));
 
 const authRouter = require("./routes/auth");
 const router = require("./routes/describe");
+const userRouter = require("./routes/user");
 
 app.use("/", authRouter);
 app.use("/", router);
+app.use("/", userRouter);
 
 app.get("/", (req, res) => {
     console.log("Server started");

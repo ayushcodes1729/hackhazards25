@@ -4,7 +4,7 @@ import img6 from "../assets/image 6.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../utils/userSlice";
 import Footer from "./Footer";
 
 export default function WebcamCapture() {
@@ -57,13 +57,10 @@ export default function WebcamCapture() {
 
   const handleLogout = async() =>{
     try {
-      console.log("Hello from Logout 1")
       await axios.post("http://localhost:3001/logout", {}, {
         withCredentials: true
       });
-      console.log("Hello from Logout 2")
       dispatch(removeUser());
-      console.log("Hello from Logout 2")
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -104,14 +101,24 @@ export default function WebcamCapture() {
     }
   };
 
-  useEffect(()=>{
-    if (!user) {
-      navigate("/signup");
+  const fetchUser = async()=>{
+    try {
+      const res = await axios.get("http://localhost:3001/get/user",{withCredentials: true})
+      dispatch(addUser(res.data.user));
+    } catch (error) {
+      if(error.response?.status== 401){
+        navigate("/signup")
+      }
+      console.log(error);
     }
+  }
+
+  useEffect(()=>{
+    fetchUser();
   }, [])
 
   if (!user) {
-    return
+    return null
   }
 
   return (

@@ -1,6 +1,8 @@
 const express = require("express");
 const Groq = require("groq-sdk");
+const { userAuth } = require("../middleware/auth");
 require("dotenv").config();
+
 
 const groq = new Groq({apikey: process.env.GROQ_API_KEY});
 
