@@ -16,7 +16,7 @@ const Signup = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3001/login', {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}login`, {
         email,
         password
       }, {
@@ -32,7 +32,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3001/signup', {
+      const res = await axios.post(`${import.meta.env.VITE_BASE_URL}signup`, {
         name,
         email,
         password

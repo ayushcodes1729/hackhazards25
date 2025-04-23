@@ -9,7 +9,7 @@ authRouter.post("/signup", async (req, res) => {
     const { name, email, password } = req.body;
     try {
         validateSignupData(req);
-        const userExists = await User.findOne({ email : email });
+        const userExists = await User.findOne({ email: email });
         if (userExists) {
             throw new Error("User already exists");
         }
@@ -25,6 +25,9 @@ authRouter.post("/signup", async (req, res) => {
         const token = await savedUser.getJWT();
 
         res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
         });
 
@@ -55,26 +58,34 @@ authRouter.post("/login", async (req, res) => {
         } else {
             const token = await registeredUser.getJWT();
             res.cookie("token", token, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
                 expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             });
             res.json({
                 message: "User logged in",
-                registeredUser
-            })
+                registeredUser,
+            });
         }
     } catch (error) {
         res.status(400).send("Error while Logging in: " + error.message);
     }
 });
 
-authRouter.post("/logout", async (req, res)=>{
+authRouter.post("/logout", async (req, res) => {
     try {
-        res.cookie("token", null, {
-            expires: new Date(Date.now())
-        }).send("User Logged Out successfully")
+        res
+            .cookie("token", null, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+                expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            })
+            .send("User Logged Out successfully");
     } catch (error) {
         res.status(400).send("Can't log out");
     }
-})
+});
 
-module.exports = authRouter
+module.exports = authRouter;

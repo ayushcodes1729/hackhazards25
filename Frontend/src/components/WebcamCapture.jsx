@@ -57,7 +57,7 @@ export default function WebcamCapture() {
 
   const handleLogout = async() =>{
     try {
-      await axios.post("http://localhost:3001/logout", {}, {
+      await axios.post(`${import.meta.env.VITE_BASE_URL}logout`, {}, {
         withCredentials: true
       });
       dispatch(removeUser());
@@ -81,7 +81,7 @@ export default function WebcamCapture() {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3001/describe", {
+      const res = await fetch(`${import.meta.env.VITE_BASE_URL}describe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image: imageData }),
@@ -103,7 +103,7 @@ export default function WebcamCapture() {
 
   const fetchUser = async()=>{
     try {
-      const res = await axios.get("http://localhost:3001/get/user",{withCredentials: true})
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}get/user`,{withCredentials: true})
       dispatch(addUser(res.data.user));
     } catch (error) {
       if(error.response?.status== 401){
