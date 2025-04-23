@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation, Link, useNavigate } from "react-router-dom";
-import { IoMdClose} from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import { MdMenu } from "react-icons/md";
 import axios from "axios";
 import { removeUser } from "../utils/userSlice";
@@ -17,7 +17,7 @@ const Navbar = () => {
     return null;
   }
 
-  const handleLogout = async() =>{
+  const handleLogout = async () => {
     try {
       await axios.post(`${import.meta.env.VITE_BASE_URL}logout`, {}, {
         withCredentials: true
@@ -43,7 +43,7 @@ const Navbar = () => {
       </div>
 
       <ul className="hidden md:flex space-x-8 text-[#B2B2B2]">
-      <li>
+        <li>
           <a href="#hero" className="text-[#B2B2B2] hover:text-white cursor-pointer">
             Home
           </a>
@@ -69,8 +69,8 @@ const Navbar = () => {
           </a>
         </li>
         {/* Adding links to Hero and Contact sections */}
-       
-       
+
+
       </ul>
 
       {user ?
@@ -94,14 +94,14 @@ const Navbar = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="text-white text-2xl focus:outline-none"
         >
-          {isMenuOpen ? <IoMdClose/> :<MdMenu/>}
+          {isMenuOpen ? <IoMdClose /> : <MdMenu />}
         </button>
       </div>
 
       {isMenuOpen && (
         <div className="absolute block md:hidden top-[73px] right-6 bg-white text-black shadow-lg rounded-lg w-48 z-50">
           <ul className="flex flex-col space-y-2 p-4">
-          <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
+            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               <a href="#hero" className="block">Home</a>
             </li>
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
@@ -117,8 +117,8 @@ const Navbar = () => {
               <a href="#audience" className="block">More</a>
             </li>
             {/* Mobile links for Hero and Contact */}
-           
-            
+
+
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               {user ?
                 (<NavLink
