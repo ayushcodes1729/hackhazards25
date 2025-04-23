@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../assets/image.png";
 import { useSelector } from "react-redux";
+import image2 from "../assets/Group 21 (1).png";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Hero = () => {
 
   return (
     <div className="bg-black min-h-screen flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-lg mb-8">
+      <div className="w-full max-w-lg mb-2">
         <img
           src={image}
           alt="Person using phone for audio descriptions"
@@ -26,7 +27,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="w-full max-w-lg flex justify-between items-start mb-8">
+      <div className="w-full max-w-lg flex justify-between items-start mb-4">
         <div className="text-white">
           <h2 className="text-xl font-medium mb-1">
             Get real-time audio
@@ -38,20 +39,12 @@ const Hero = () => {
           <p className="text-sm text-gray-300">100% Feasible and Free</p>
         </div>
 
-        <div className="w-48 h-16">
-          <svg width="100%" height="100%" viewBox="0 0 192 64">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <rect
-                key={i}
-                x={i * 10}
-                y={32 - Math.abs(Math.sin(i * 0.5) * 25)}
-                width="4"
-                height={Math.abs(Math.sin(i * 0.5) * 50)}
-                fill="#00D4FF"
-                rx="1"
-              />
-            ))}
-          </svg>
+        <div className="w-48 h-[15%] mt-4 ">
+          <img
+            src={image2}
+            alt="Wave illustration"
+            className="w-full h-auto rounded-lg"
+          />
         </div>
       </div>
 

@@ -31,7 +31,7 @@ const Mainlayout = () => {
       fetchUser();
     }, [])
   return (
-    <div>
+    <div className="bg-black">
        <Navbar /> 
       <Hero />
 
