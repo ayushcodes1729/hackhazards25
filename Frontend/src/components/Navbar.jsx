@@ -30,7 +30,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="flex justify-between items-center bg-[#191919] h-[73px] px-6 w-full">
+    <nav className="flex justify-between items-center bg-[#1E1E1E] h-[73px] px-6 w-full">
       <div className="flex items-center">
         <NavLink to="/" className="text-3xl font-bold bg-gradient-to-r from-[#486663] to-[#00D4FF] bg-clip-text text-transparent">
           YOUSEE
@@ -43,9 +43,19 @@ const Navbar = () => {
       </div>
 
       <ul className="hidden md:flex space-x-8 text-[#B2B2B2]">
+      <li>
+          <a href="#hero" className="text-[#B2B2B2] hover:text-white cursor-pointer">
+            Home
+          </a>
+        </li>
         <li>
           <a href="#about" className="text-[#B2B2B2] hover:text-white cursor-pointer">
             About us
+          </a>
+        </li>
+        <li>
+          <a href="#contact" className="text-[#B2B2B2] hover:text-white cursor-pointer">
+            Contact Us
           </a>
         </li>
         <li>
@@ -59,16 +69,8 @@ const Navbar = () => {
           </a>
         </li>
         {/* Adding links to Hero and Contact sections */}
-        <li>
-          <a href="#hero" className="text-[#B2B2B2] hover:text-white cursor-pointer">
-            Hero Section
-          </a>
-        </li>
-        <li>
-          <a href="#contact" className="text-[#B2B2B2] hover:text-white cursor-pointer">
-            Contact Us
-          </a>
-        </li>
+       
+       
       </ul>
 
       {user ?
@@ -99,8 +101,14 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="absolute block md:hidden top-[73px] right-6 bg-white text-black shadow-lg rounded-lg w-48 z-50">
           <ul className="flex flex-col space-y-2 p-4">
+          <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
+              <a href="#hero" className="block">Home</a>
+            </li>
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               <a href="#about" className="block">About us</a>
+            </li>
+            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
+              <a href="#contact" className="block">Contact Us</a>
             </li>
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               <a href="#work" className="block">FAQs</a>
@@ -109,12 +117,8 @@ const Navbar = () => {
               <a href="#audience" className="block">More</a>
             </li>
             {/* Mobile links for Hero and Contact */}
-            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <a href="#hero" className="block">Hero Section</a>
-            </li>
-            <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
-              <a href="#contact" className="block">Contact Us</a>
-            </li>
+           
+            
             <li className="hover:bg-gray-100 p-2 rounded cursor-pointer">
               {user ?
                 (<NavLink
