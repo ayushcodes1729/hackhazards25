@@ -67,8 +67,8 @@ Add images, GIFs, or screenshots if helpful!
 
 ## 📽️ Demo & Deliverables
 
-- **Demo Video Link:** [Paste YouTube or Loom link here]  
-- **Pitch Deck / PPT Link:** [Paste Google Slides / PDF link here]  
+- **Demo Video Link:** https://www.loom.com/share/04bf0b6b149f413ca88e646685b2efb4?sid=d819ff0b-dded-4fc7-b217-8a3175f39d32
+- **Pitch Deck / PPT Link:** https://drive.google.com/file/d/12tNo6wmQt37Uk3W0hMinHAZOydLSDvI2/view?usp=drive_link  
 
 ---
 
