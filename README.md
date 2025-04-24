@@ -4,7 +4,7 @@
 
 > A one-line tagline or mission statement for your project.
 
----
+--- Your eyes, reimagined
 
 ## 📌 Problem Statement
 
@@ -13,44 +13,45 @@ Select the problem statement number and title from the official list given in Pa
 **Example:**  
 **Problem Statement 7 – Transform the Future of Rural Commerce**
 
----
+--- Problem Statement 1 - Weave AI magic with Groq
 
 ## 🎯 Objective
 
 What problem does your project solve, and who does it serve?  
 Briefly describe the real-world use case and the value it provides.
 
----
+--- A voice-based accessibility tool using Groq which helps visually-imparied people to get the audio description of there surroundings. This app is useful for visually challenged people, elderly people, and also to people who like to explore new things. It can become a way for visually-challenged people to explore their surrounding with the help of technologies.
 
 ## 🧠 Team & Approach
 
 ### Team Name:  
-`Your team name here`
+`ChillHackers`
 
 ### Team Members:  
-- Name 1 (GitHub / LinkedIn / Role)  
-- Name 2  
-- Name 3  
-*(Add links if you want)*
+- Ayush Kumar (https://github.com/ayushcodes1729 / www.linkedin.com/in/ayushcodes1729 / Backend and AI Engineer)  
+- Payal Verma (https://github.com/PayalVerma1 / https://www.linkedin.com/in/payal-verma-509244296/ / Frontend Engineer)
+- Ayush Kumar Pandey (https://github.com/Akp2636 / https://www.linkedin.com/in/ayush-kr-pandey-37870127a/ / Backend Engineer)
+- Ayush Kumar Pandey (https://github.com/riddhiUI / https://www.linkedin.com/in/riddhi-yadav-901b28293/ / UI/UX Designer)
 
 ### Your Approach:  
 - Why you chose this problem  
 - Key challenges you addressed  
 - Any pivots, brainstorms, or breakthroughs during hacking  
 
----
+--- We chose this problem because we wanted to use AI to solve some real-world problems and by making this project we could serve a lot visually-impaired individuals, and also create curiousity in people.
+--- Some key challenges which we faced are: Sending Image to groq API in base64 encoding and then getting image description through that, and adding voice based command system to trigger capture function which sends the image data through live webcam to groq API
 
 ## 🛠️ Tech Stack
 
 ### Core Technologies Used:
-- Frontend:
-- Backend:
-- Database:
-- APIs:
-- Hosting:
+- Frontend: Reactjs, TailwindCSS, React-icons
+- Backend: Nodejs, Expressjs
+- Database: MongoDB
+- APIs: Groq
+- Hosting: Vercel
 
 ### Sponsor Technologies Used (if any):
-- [ ] **Groq:** _How you used Groq_  
+- [✅] **Groq:** _How you used Groq_  
 - [ ] **Monad:** _Your blockchain implementation_  
 - [ ] **Fluvio:** _Real-time data handling_  
 - [ ] **Base:** _AgentKit / OnchainKit / Smart Wallet usage_  
@@ -63,10 +64,10 @@ Briefly describe the real-world use case and the value it provides.
 
 Highlight the most important features of your project:
 
-- ✅ Feature 1  
-- ✅ Feature 2  
-- ✅ Feature 3  
-- ✅ Feature 4  
+- ✅ Live Audio description of your surrounding through your webcam.
+- ✅ Audio based input without any clicks or navigation for generating description
+- ✅ Easy navigation through minimalistic UI
+- ✅ Fast responses with secure APIs
 
 Add images, GIFs, or screenshots if helpful!
 
@@ -81,9 +82,9 @@ Add images, GIFs, or screenshots if helpful!
 
 ## ✅ Tasks & Bonus Checklist
 
-- [ ] **All members of the team completed the mandatory task - Followed at least 2 of our social channels and filled the form** (Details in Participant Manual)  
-- [ ] **All members of the team completed Bonus Task 1 - Sharing of Badges and filled the form (2 points)**  (Details in Participant Manual)
-- [ ] **All members of the team completed Bonus Task 2 - Signing up for Sprint.dev and filled the form (3 points)**  (Details in Participant Manual)
+- [✅] **All members of the team completed the mandatory task - Followed at least 2 of our social channels and filled the form** (Details in Participant Manual)  
+- [✅] **All members of the team completed Bonus Task 1 - Sharing of Badges and filled the form (2 points)**  (Details in Participant Manual)
+- [✅] **All members of the team completed Bonus Task 2 - Signing up for Sprint.dev and filled the form (3 points)**  (Details in Participant Manual)
 
 *(Mark with ✅ if completed)*
 
@@ -92,9 +93,9 @@ Add images, GIFs, or screenshots if helpful!
 ## 🧪 How to Run the Project
 
 ### Requirements:
-- Node.js / Python / Docker / etc.
-- API Keys (if any)
-- .env file setup (if needed)
+- Node.js etc.
+- API Keys (if any): In backend: Groq api key
+- .env file setup (if needed): In backend: MONGODB_URI, PORT, JWT_SECRET & In frontend: VITE_BASE_URL
 
 ### Local Setup:
 ```bash
@@ -117,7 +118,7 @@ Provide any backend/frontend split or environment setup notes here.
 
 List improvements, extensions, or follow-up features:
 
-- 📈 More integrations  
+- 📈 No touch navigation on the app so that a visually-impaired people can navigate with just there voices.
 - 🛡️ Security enhancements  
 - 🌐 Localization / broader accessibility  
 
@@ -125,8 +126,8 @@ List improvements, extensions, or follow-up features:
 
 ## 📎 Resources / Credits
 
-- APIs or datasets used  
-- Open source libraries or tools referenced  
+- APIs or datasets used: Groq API used for image to text generation
+- Open source libraries or tools referenced: React-icons, TailwindCSS, Mongoose,etc
 - Acknowledgements  
 
 ---
@@ -134,5 +135,5 @@ List improvements, extensions, or follow-up features:
 ## 🏁 Final Words
 
 Share your hackathon journey — challenges, learnings, fun moments, or shout-outs!
-
+- It was a great experience working in this hackathon. A lot of challenges happend with us while sending data to Groq APIs, creating live webcam with voice controlling features which lead us to increadible learning opportunities
 ---
