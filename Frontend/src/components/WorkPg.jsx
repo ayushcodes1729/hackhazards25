@@ -21,7 +21,7 @@ const WorkPg = () => {
   ];
 
   return (
-    <div id="work" className=" text-white mb-20 flex flex-col items-center justify-center p-4 ">
+    <div id="work" className=" text-white mb-15 flex flex-col items-center justify-center p-4 ">
       <h1 className="text-2xl md:text-3xl font-bold text-center mb-8 mt-0 ">How it Works?</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-[90vw] sm:w-[70vw]">
         {steps.map((step, index) => (
