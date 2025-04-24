@@ -18,7 +18,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen flex flex-col items-center justify-center p-4">
+    <div className="bg-black min-h-[95vh] flex flex-col items-center justify-center  p-4">
       <div className="w-full max-w-lg mb-2">
         <img
           src={image}

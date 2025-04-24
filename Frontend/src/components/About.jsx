@@ -23,7 +23,12 @@ export default function YouSee() {
   ];
 
   return (
-    <div className="bg-black text-white min-h-screen p-4 mt-0 mb-0" id="about">
+    <div
+    className={`bg-black text-white min-h-[85vh] p-4 mt-0 ${
+      isMobile ? "mb-16" : "mb-8"
+    }`}
+    id="about"
+  >
       <div className="max-w-5xl mx-auto">
         <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">
           What is YouSee?
