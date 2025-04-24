@@ -2,25 +2,20 @@
 
 # 🚀 Project Title
 
-> A one-line tagline or mission statement for your project.
-
---- Your eyes, reimagined
+> YouSee - Your eyes, reimagined
 
 ## 📌 Problem Statement
 
 Select the problem statement number and title from the official list given in Participant Manual.
 
-**Example:**  
-**Problem Statement 7 – Transform the Future of Rural Commerce**
-
---- Problem Statement 1 - Weave AI magic with Groq
+**Problem Statement 1 - Weave AI magic with Groq**
 
 ## 🎯 Objective
 
 What problem does your project solve, and who does it serve?  
 Briefly describe the real-world use case and the value it provides.
 
---- A voice-based accessibility tool using Groq which helps visually-imparied people to get the audio description of there surroundings. This app is useful for visually challenged people, elderly people, and also to people who like to explore new things. It can become a way for visually-challenged people to explore their surrounding with the help of technologies.
+A voice-based accessibility tool using Groq which helps visually-imparied people to get the audio description of there surroundings. This app is useful for visually challenged people, elderly people, and also to people who like to explore new things. It can become a way for visually-challenged people to explore their surrounding with the help of technologies.
 
 ## 🧠 Team & Approach
 
@@ -34,12 +29,9 @@ Briefly describe the real-world use case and the value it provides.
 - Ayush Kumar Pandey (https://github.com/riddhiUI / https://www.linkedin.com/in/riddhi-yadav-901b28293/ / UI/UX Designer)
 
 ### Your Approach:  
-- Why you chose this problem  
-- Key challenges you addressed  
-- Any pivots, brainstorms, or breakthroughs during hacking  
 
---- We chose this problem because we wanted to use AI to solve some real-world problems and by making this project we could serve a lot visually-impaired individuals, and also create curiousity in people.
---- Some key challenges which we faced are: Sending Image to groq API in base64 encoding and then getting image description through that, and adding voice based command system to trigger capture function which sends the image data through live webcam to groq API
+- We chose this problem because we wanted to use AI to solve some real-world problems and by making this project we could serve a lot visually-impaired individuals, and also create curiousity in people.
+- Some key challenges which we faced are: Sending Image to groq API in base64 encoding and then getting image description through that, and adding voice based command system to trigger capture function which sends the image data through live webcam to groq API
 
 ## 🛠️ Tech Stack
 
@@ -93,7 +85,7 @@ Add images, GIFs, or screenshots if helpful!
 ## 🧪 How to Run the Project
 
 ### Requirements:
-- Node.js etc.
+- Node.js
 - API Keys (if any): In backend: Groq api key
 - .env file setup (if needed): In backend: MONGODB_URI, PORT, JWT_SECRET & In frontend: VITE_BASE_URL
 
@@ -118,9 +110,7 @@ Provide any backend/frontend split or environment setup notes here.
 
 List improvements, extensions, or follow-up features:
 
-- 📈 No touch navigation on the app so that a visually-impaired people can navigate with just there voices.
-- 🛡️ Security enhancements  
-- 🌐 Localization / broader accessibility  
+- 📈 No touch navigation on the app so that a visually-impaired people can navigate with just there voices. 
 
 ---
 
