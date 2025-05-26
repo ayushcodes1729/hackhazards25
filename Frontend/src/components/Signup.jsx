@@ -62,7 +62,7 @@ const Signup = () => {
         </div>
       </nav>
       <div className="min-h-screen bg-[#191919] text-white flex flex-col items-center justify-center px-4 py-2 sm:py-12">
-        <div className="w-full max-w-md bg-black p-6 sm:p-8 rounded-lg shadow-lg">
+        <div className="max-w-md w-full bg-black p-8 rounded-lg shadow-lg">
           <h1 className="text-3xl font-bold text-center mb-6">
             {isSignup ? "Sign Up" : "Log In"}
           </h1>
